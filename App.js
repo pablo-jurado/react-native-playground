@@ -8,13 +8,31 @@ import { FormModal } from "./components/modal";
 export default function App() {
   const [items, setItems] = React.useState([]);
   const [showModal, setShowModal] = React.useState(false);
+  const [itemIndex, setItemIndex] = React.useState(null);
 
   function addItem(newItem) {
-    setItems([...items, newItem]);
+    const id = Math.random().toString();
+    setItems([...items, { ...newItem, id }]);
   }
 
   function removeItem(removeIndex) {
     setItems(items.filter((_, index) => index !== removeIndex));
+  }
+
+  function editItem(item) {
+    setItems(items.map((oldItem) => (oldItem.id === item.id ? item : oldItem)));
+    setItemIndex(null);
+    setShowModal(false);
+  }
+
+  function onEdit(index) {
+    setItemIndex(index);
+    setShowModal(true);
+  }
+
+  function openModal() {
+    setItemIndex(null);
+    setShowModal(true);
   }
 
   return (
@@ -22,23 +40,26 @@ export default function App() {
       <StatusBar style="auto" />
       <FormModal
         showModal={showModal}
-        setShowModal={setShowModal}
+        closeModal={() => setShowModal(false)}
         addItem={addItem}
+        editItem={editItem}
+        item={items[itemIndex]}
       />
       <View style={globalStyles.container}>
         <Text>My Contacts</Text>
         <FlatList
           data={items}
-          keyExtractor={(item) => item.key}
+          keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
             <TodoItem
               itemText={item.name + " - " + item.phone}
-              onPress={() => removeItem(index)}
+              onRemove={() => removeItem(index)}
+              onEdit={() => onEdit(index)}
             />
           )}
         />
       </View>
-      <Button title="Add Contact" onPress={() => setShowModal(true)} />
+      <Button title="Add Contact" onPress={openModal} />
     </>
   );
 }
