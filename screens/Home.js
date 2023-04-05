@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, Button, TextInput, FlatList } from "react-native";
-import { globalStyles } from "./styles";
-import { TodoItem } from "./components/todoItem";
-import { FormModal } from "./components/modal";
+import { View, Text, Button, FlatList } from "react-native";
+import { globalStyles } from "../styles";
+import { TodoItem } from "../components/todoItem";
+import { FormModal } from "../components/modal";
 
 export default function Home() {
   const [items, setItems] = React.useState([]);
@@ -44,18 +44,21 @@ export default function Home() {
         item={items[itemIndex]}
       />
       <View style={globalStyles.container}>
-        <Text>My Contacts</Text>
-        <FlatList
-          data={items}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index }) => (
-            <TodoItem
-              itemText={item.name + " - " + item.phone}
-              onRemove={() => removeItem(index)}
-              onEdit={() => onEdit(index)}
-            />
-          )}
-        />
+        {items.length === 0 ? (
+          <Text style={{ textAlign: "center" }}>No Contacts</Text>
+        ) : (
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => (
+              <TodoItem
+                itemText={item.name + " - " + item.phone}
+                onRemove={() => removeItem(index)}
+                onEdit={() => onEdit(index)}
+              />
+            )}
+          />
+        )}
       </View>
       <Button title="Add Contact" onPress={openModal} />
     </>

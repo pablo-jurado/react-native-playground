@@ -5,8 +5,7 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "flex-start",
-    marginTop: 40,
-    margin: 20,
+    padding: 10,
   },
   list: {
     margin: 5,
