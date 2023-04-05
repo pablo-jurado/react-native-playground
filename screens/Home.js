@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, Button, FlatList } from "react-native";
 import { globalStyles } from "../styles";
-import { TodoItem } from "../components/todoItem";
+import { ContactListItem } from "../components/ContactListItem";
 import { FormModal } from "../components/modal";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [items, setItems] = React.useState([]);
   const [showModal, setShowModal] = React.useState(false);
   const [itemIndex, setItemIndex] = React.useState(null);
@@ -50,12 +50,8 @@ export default function Home() {
           <FlatList
             data={items}
             keyExtractor={(item) => item.id}
-            renderItem={({ item, index }) => (
-              <TodoItem
-                itemText={item.name + " - " + item.phone}
-                onRemove={() => removeItem(index)}
-                onEdit={() => onEdit(index)}
-              />
+            renderItem={({ item }) => (
+              <ContactListItem contact={item} navigation={navigation} />
             )}
           />
         )}

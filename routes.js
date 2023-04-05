@@ -10,7 +10,7 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Contacts" component={Home} />
-        <Stack.Screen name="Contacts Details" component={Details} />
+        <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
     </NavigationContainer>
   );
