@@ -3,13 +3,13 @@ import {
   Modal,
   View,
   Text,
-  Button,
   TextInput,
   TouchableOpacity,
   Dimensions,
 } from "react-native";
 import { globalStyles } from "../styles";
 import { AntDesign } from "@expo/vector-icons";
+import Button from "./Button";
 
 export const FormModal = ({ showModal, closeModal, addItem, edit, item }) => {
   const ref_input2 = React.useRef();
@@ -75,9 +75,11 @@ export const FormModal = ({ showModal, closeModal, addItem, edit, item }) => {
         />
       </View>
       {item ? (
-        <Button title="Edit" onPress={handleEdit} />
+        <Button onPress={handleEdit}>Save</Button>
       ) : (
-        <Button title="Submit" onPress={handleSubmit} />
+        <Button onPress={handleSubmit} backgroundColor="#b1b1b1">
+          Submit
+        </Button>
       )}
     </Modal>
   );

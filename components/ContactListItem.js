@@ -1,24 +1,23 @@
 import React from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { globalStyles } from "../styles";
+import Button from "./Button";
 
 export function ContactListItem({ contact, navigation, onEdit, onRemoveItem }) {
   return (
     <View style={globalStyles.listItem}>
       <Text>{contact.name + " - " + contact.phone}</Text>
       <View style={styles.container}>
+        <Button backgroundColor="#fff" textColor="#757575" onPress={onEdit}>
+          Edit
+        </Button>
         <Button
-          color={"gray"}
-          style={styles.button}
-          title="Edit"
-          onPress={onEdit}
-        ></Button>
-        <Button
-          color={"red"}
-          style={styles.button}
-          title="Delete"
+          backgroundColor="#fff"
+          textColor="#b13434"
           onPress={onRemoveItem}
-        ></Button>
+        >
+          Delete
+        </Button>
       </View>
     </View>
   );

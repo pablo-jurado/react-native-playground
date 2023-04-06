@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { globalStyles } from "../styles";
 import { ContactListItem } from "../components/ContactListItem";
 import { FormModal } from "../components/modal";
+import Button from "../components/Button";
 
 export default function Home({ navigation }) {
   const [items, setItems] = React.useState([]);
@@ -44,7 +45,9 @@ export default function Home({ navigation }) {
         item={items[itemIndex]}
       />
       <View style={{ marginHorizontal: 40, marginVertical: 20 }}>
-        <Button title="Add Contact" onPress={openModal} />
+        <Button onPress={openModal} backgroundColor="#b1b1b1">
+          Add Contacts
+        </Button>
       </View>
       <View style={globalStyles.container}>
         {items.length === 0 ? (
