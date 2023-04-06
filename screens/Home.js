@@ -18,7 +18,7 @@ export default function Home({ navigation }) {
     setItems(items.filter((_, index) => index !== removeIndex));
   }
 
-  function editItem(item) {
+  function edit(item) {
     setItems(items.map((oldItem) => (oldItem.id === item.id ? item : oldItem)));
     setItemIndex(null);
     setShowModal(false);
@@ -40,9 +40,12 @@ export default function Home({ navigation }) {
         showModal={showModal}
         closeModal={() => setShowModal(false)}
         addItem={addItem}
-        editItem={editItem}
+        edit={edit}
         item={items[itemIndex]}
       />
+      <View style={{ marginHorizontal: 40, marginVertical: 20 }}>
+        <Button title="Add Contact" onPress={openModal} />
+      </View>
       <View style={globalStyles.container}>
         {items.length === 0 ? (
           <Text style={{ textAlign: "center" }}>No Contacts</Text>
@@ -50,13 +53,17 @@ export default function Home({ navigation }) {
           <FlatList
             data={items}
             keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <ContactListItem contact={item} navigation={navigation} />
+            renderItem={({ item, index }) => (
+              <ContactListItem
+                contact={item}
+                navigation={navigation}
+                onEdit={() => onEdit(index)}
+                onRemoveItem={() => removeItem(index)}
+              />
             )}
           />
         )}
       </View>
-      <Button title="Add Contact" onPress={openModal} />
     </>
   );
 }

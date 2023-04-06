@@ -10,13 +10,7 @@ import {
 import { globalStyles } from "../styles";
 import { AntDesign } from "@expo/vector-icons";
 
-export const FormModal = ({
-  showModal,
-  closeModal,
-  addItem,
-  editItem,
-  item,
-}) => {
+export const FormModal = ({ showModal, closeModal, addItem, edit, item }) => {
   const ref_input2 = React.useRef();
   const [name, onChangeName] = React.useState("");
   const [phone, onChangePhone] = React.useState("");
@@ -45,7 +39,7 @@ export const FormModal = ({
   };
 
   const handleEdit = () => {
-    editItem({ name, phone, id: item.id });
+    edit({ name, phone, id: item.id });
   };
 
   return (

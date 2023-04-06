@@ -1,12 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View, Button } from "react-native";
 
 export default function Details({ route }) {
-  const { contact } = route.params;
+  const { contact, onRemoveItem } = route.params;
 
   return (
-    <Text>
-      {contact.name} - {contact.phone}
-    </Text>
+    <View style={{ justifyContent: "space-around" }}>
+      <Text>
+        {contact.name} - {contact.phone}
+      </Text>
+      <Button title="Delete" onPress={onRemoveItem}></Button>
+    </View>
   );
 }

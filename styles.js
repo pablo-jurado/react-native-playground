@@ -15,8 +15,10 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 5,
     padding: 5,
-    borderStyle: "dashed",
-    borderWidth: 1,
+    elevation: 5,
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: "#fff",
   },
   input: {
     height: 40,
