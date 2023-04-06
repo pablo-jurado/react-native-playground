@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import { globalStyles } from "../styles";
 import { AntDesign } from "@expo/vector-icons";
@@ -44,7 +45,7 @@ export const FormModal = ({ showModal, closeModal, addItem, edit, item }) => {
 
   return (
     <Modal visible={showModal} animationType="slide">
-      <View style={globalStyles.container}>
+      <View style={{ marginTop: 80 }}>
         <TouchableOpacity
           onPress={handleClose}
           style={{
