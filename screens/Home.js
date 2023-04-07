@@ -1,14 +1,25 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Alert } from "react-native";
 import { globalStyles } from "../styles";
 import { ContactListItem } from "../components/ContactListItem";
 import { FormModal } from "../components/modal";
 import Button from "../components/Button";
+import { storeData, getData } from "../services/localStorage";
 
 export default function Home({ navigation }) {
   const [items, setItems] = React.useState([]);
   const [showModal, setShowModal] = React.useState(false);
   const [itemIndex, setItemIndex] = React.useState(null);
+
+  // load items from local store
+  React.useEffect(() => {
+    getData("contacts").then(setItems);
+  }, []);
+
+  // update local store when items change
+  React.useEffect(() => {
+    storeData("contacts", items);
+  }, [items]);
 
   function addItem(newItem) {
     const id = Math.random().toString();
