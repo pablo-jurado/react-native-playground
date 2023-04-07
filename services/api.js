@@ -1,4 +1,5 @@
 const API_URL = "https://jsonplaceholder.typicode.com";
+import { Alert } from "react-native";
 
 export async function getPosts() {
   try {
@@ -9,7 +10,7 @@ export async function getPosts() {
 
     return response.json();
   } catch (error) {
-    console.error(error);
+    Alert.alert("Error", error);
   }
 }
 
@@ -22,7 +23,7 @@ export async function getPost(id) {
 
     return response.json();
   } catch (error) {
-    console.error(error);
+    Alert.alert("Error", error);
   }
 }
 
@@ -35,6 +36,6 @@ export async function getPostComments(postId) {
 
     return response.json();
   } catch (error) {
-    console.error(error);
+    Alert.alert("Error", error);
   }
 }
