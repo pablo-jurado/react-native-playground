@@ -25,3 +25,16 @@ export async function getPost(id) {
     console.error(error);
   }
 }
+
+export async function getPostComments(postId) {
+  try {
+    const response = await fetch(`${API_URL}/posts/${postId}/comments`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
