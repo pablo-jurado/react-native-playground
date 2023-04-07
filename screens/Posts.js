@@ -1,32 +1,22 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
+import { PostListItem } from "../components/PostListItem";
+import { getPosts } from "../services/api";
 
 export default function Posts() {
   const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
-    async function getPosts() {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts",
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        const data = await response.json();
-        setPosts(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    getPosts();
+    getPosts().then(setPosts);
   }, []);
 
-  return (
-    <View>
-      <Text>Posts</Text>
-    </View>
-  );
+  return posts.length > 0 ? (
+    <ScrollView>
+      {posts.map((post) => (
+        <View key={post.id}>
+          <PostListItem post={post} />
+        </View>
+      ))}
+    </ScrollView>
+  ) : null;
 }

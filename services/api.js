@@ -1,0 +1,27 @@
+const API_URL = "https://jsonplaceholder.typicode.com";
+
+export async function getPosts() {
+  try {
+    const response = await fetch(`${API_URL}/posts`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getPost(id) {
+  try {
+    const response = await fetch(`${API_URL}/posts/${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
