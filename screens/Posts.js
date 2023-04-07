@@ -1,7 +1,8 @@
-import { View, Text, ScrollView } from "react-native";
 import React from "react";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { PostListItem } from "../components/PostListItem";
 import { getPosts } from "../services/api";
+import Loader from "../components/Loader";
 
 export default function Posts() {
   const [posts, setPosts] = React.useState([]);
@@ -18,5 +19,7 @@ export default function Posts() {
         </View>
       ))}
     </ScrollView>
-  ) : null;
+  ) : (
+    <Loader />
+  );
 }
