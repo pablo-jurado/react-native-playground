@@ -12,7 +12,7 @@ export default function Nav() {
   return (
     <View style={styles.container}>
       <View style={styles.buttonWrapper}>
-        <Button onPress={() => navigation.navigate("Contacts")}>
+        <Button onPress={() => navigation.navigate("Home")}>
           <Entypo
             style={{ letterSpacing: 5 }}
             name="home"
